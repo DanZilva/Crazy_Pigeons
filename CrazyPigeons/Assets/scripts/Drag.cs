@@ -38,6 +38,10 @@ public class Drag : MonoBehaviour
     public Rigidbody2D CatapultRB;
     public bool estouPronto = false;
 
+   [SerializeField]
+    public AudioSource audioPassaro;
+    public GameObject audioMortePassaro;
+
     void Awake()
     {
         spring = GetComponent<SpringJoint2D>();
@@ -55,6 +59,8 @@ public class Drag : MonoBehaviour
         rayToMT = new Ray(catapult.position, UnityEngine.Vector3.zero);
 
         rastro = GetComponentInChildren<TrailRenderer>();
+
+        audioPassaro = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -182,6 +188,7 @@ public class Drag : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Instantiate(bomb, new UnityEngine.Vector2(transform.position.x, transform.position.y), UnityEngine.Quaternion.identity);
+        Instantiate(audioMortePassaro, new UnityEngine.Vector2(transform.position.x, transform.position.y), UnityEngine.Quaternion.identity);
         Destroy(gameObject);
         GAMEMANAGER.instance.passarosNum -= 1;
         GAMEMANAGER.instance.passarosEmCena = 0;
@@ -226,6 +233,7 @@ public class Drag : MonoBehaviour
             clicked = false;
             rastro.enabled = true;
             GAMEMANAGER.instance.passaroLancado = true;
+            audioPassaro.Play ();
         }
     }
 }

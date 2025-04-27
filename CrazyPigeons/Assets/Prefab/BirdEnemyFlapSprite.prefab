@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4467209058131415984}
   - component: {fileID: 2989900000203707052}
   - component: {fileID: 7508767565229458430}
+  - component: {fileID: 4556584260732283225}
   m_Layer: 6
   m_Name: BirdEnemyFlapSprite
   m_TagString: Player
@@ -172,6 +173,10 @@ MonoBehaviour:
   lineFront: {fileID: 0}
   lineBack: {fileID: 0}
   bomb: {fileID: 2296301362488196470, guid: 05a65dc32cf151d478d957ed461be1fd, type: 3}
+  CatapultRB: {fileID: 0}
+  estouPronto: 0
+  audioPassaro: {fileID: 0}
+  audioMortePassaro: {fileID: 1694973156955598966, guid: e7d17450217a1a749b14d196e0a96ae5, type: 3}
 --- !u!231 &4467209058131415984
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -221,6 +226,102 @@ MonoBehaviour:
   libera: 0
   trava: 0
   bomba: {fileID: 2645031577828016551, guid: 210ae7754da0d9b448771d9cb1b74c7e, type: 3}
+--- !u!82 &4556584260732283225
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517103058507587020}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a9f1d9f2e7a64ca4fbefca136c4eae3f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5373987741001248401
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +332,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7069099434053763814}
   - component: {fileID: 2532370637187473726}
+  - component: {fileID: 8601208068384552093}
+  - component: {fileID: 5640619749087054861}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -357,3 +460,27 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8601208068384552093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373987741001248401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3607af2fa7430254092cf39f8516203a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5640619749087054861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373987741001248401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3607af2fa7430254092cf39f8516203a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
