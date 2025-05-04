@@ -205,10 +205,10 @@ public class Drag : MonoBehaviour
 
             catapulTotBird = mouseWP - catapult.position;
 
-            if (catapulTotBird.magnitude > 4F)
+            if (catapulTotBird.magnitude > 5.5F)
             {
                 rayToMT.direction = catapulTotBird;
-                mouseWP = rayToMT.GetPoint(4F);
+                mouseWP = rayToMT.GetPoint(5.5F);
             }
 
             transform.position = mouseWP;

@@ -18,6 +18,13 @@ public class GAMEMANAGER : MonoBehaviour
     public bool passaroLancado = false;
     public Transform objE, objD;
 
+    public int numPorcosCena;
+    private bool tocaWin = false, tocaLose = false;
+
+    public bool estrela1fim, estrela2fim,estrela3fim;
+
+    public int aux;
+
     void Awake()
     {
         if (instance == null)
@@ -34,8 +41,6 @@ public class GAMEMANAGER : MonoBehaviour
 
 
     }
-
-
 
     void Carrega(Scene cena, LoadSceneMode modo)
     {
@@ -55,6 +60,9 @@ public class GAMEMANAGER : MonoBehaviour
         }
 
         //
+
+        numPorcosCena = GameObject.FindGameObjectsWithTag ("porco").Length;
+        aux = passarosNum;
     }
 
     void NascPassaro()
@@ -86,6 +94,51 @@ public class GAMEMANAGER : MonoBehaviour
     void WinGame()
     {
         jogoComecou = false;
+        UIMANAGER.instance.painelWin.Play ("MenuWinAnimado");
+
+        if (!UIMANAGER.instance.winSom.isPlaying && tocaWin == false)
+        {
+            UIMANAGER.instance.winSom.Play ();
+            tocaWin = true;
+        }
+
+        if (tocaWin && !UIMANAGER.instance.winSom.isPlaying)
+        {
+           if (passarosNum == aux - 1)
+           {    
+                print("Libera 3 Estrelas!");
+                UIMANAGER.instance.estrela1.Play ("Estrela1_animada");
+                
+
+                if (estrela1fim)
+                {
+                    UIMANAGER.instance.estrela2.Play ("Estrela2_animada");
+
+                    if (estrela2fim)
+                    {
+                        UIMANAGER.instance.estrela3.Play ("Estrela3_animada");
+                    }
+                }
+           } 
+
+            else if (passarosNum == aux - 2)
+            {
+                print("Libera 2 Estrelas!");
+                UIMANAGER.instance.estrela1.Play("Estrela1_animada");
+
+                    if (estrela1fim)
+                    {
+                        UIMANAGER.instance.estrela2.Play ("Estrela2_animada");
+                    }              
+            }
+
+            else if(passarosNum <= aux -3)
+            {
+                print("Libera 1 Estrela!");
+                UIMANAGER.instance.estrela1.Play("Estrela1_animada");
+            }
+        }
+
     }
 
     void StartGame()
@@ -105,6 +158,10 @@ public class GAMEMANAGER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (numPorcosCena <= 0 && passarosNum > 0)
+        {
+            win = true;
+        }
         if(win)
         {
             WinGame ();

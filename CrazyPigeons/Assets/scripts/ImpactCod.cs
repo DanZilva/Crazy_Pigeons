@@ -11,6 +11,9 @@ public class ImpactCod : MonoBehaviour
     private Sprite [] sprites;
     [SerializeField]
     private GameObject bomb,pontos1000;
+    private AudioSource audioObj;
+    [SerializeField]
+    private AudioClip[] clips;
 
 
 
@@ -20,6 +23,7 @@ public class ImpactCod : MonoBehaviour
      limite = 0;
      spriteR = GetComponent<SpriteRenderer> ();
      spriteR.sprite = sprites [0];
+     audioObj = GetComponent<AudioSource> ();
 
     }
 
@@ -32,11 +36,15 @@ public class ImpactCod : MonoBehaviour
             {
                 limite ++;
                 spriteR.sprite = sprites [limite];
+                audioObj.clip = clips [0];
+                audioObj.Play();
             }
             else if (limite == sprites.Length -1)
             {
                 Instantiate (pontos1000 , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
                 Instantiate (bomb , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
+                audioObj.clip = clips [1];
+                audioObj.Play();
                 Destroy (gameObject);
             }
         }
@@ -44,7 +52,9 @@ public class ImpactCod : MonoBehaviour
         {
             Instantiate (pontos1000 , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
             Instantiate (bomb , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-            Destroy (gameObject);
+            audioObj.clip = clips [1];
+            audioObj.Play();
+            Destroy (gameObject,3);
         }
     }
 }
