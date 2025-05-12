@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
     public Transform localBtn;
     public List<Level> levelList;
 
-    void ListaAdd()
+  void ListaAdd()
     {
         foreach (Level level in levelList)
         {
@@ -62,10 +62,31 @@ public class LevelManager : MonoBehaviour
             {
                 buttonComponent.onClick.AddListener(() => ClickLevel("Level" + btnNew.levelTxtBTN.text));
 
-                // Exibir estrelas se o nível foi completado
-                btnNew.estrela1.enabled = false;
-                btnNew.estrela2.enabled = false;
-                btnNew.estrela3.enabled = false;
+               if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 1)
+               {
+                btnNew.estrela1.enabled = true;
+               }
+                else if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 2)
+                {
+                    btnNew.estrela1.enabled = true;
+                    btnNew.estrela2.enabled = true;
+
+                }
+                else if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 3)
+                {
+                    btnNew.estrela1.enabled = true;
+                    btnNew.estrela2.enabled = true; 
+                    btnNew.estrela3.enabled = true;
+                }
+                else if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 0)
+                {
+                    btnNew.estrela1.enabled = false;
+                    btnNew.estrela2.enabled = false; 
+                    btnNew.estrela3.enabled = false; 
+                }
+
+
+
             }
 
             // Adicionar botão à hierarquia

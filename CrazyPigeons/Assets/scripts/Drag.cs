@@ -236,4 +236,19 @@ public class Drag : MonoBehaviour
             audioPassaro.Play ();
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+       if (col.gameObject.CompareTag("moedasTag"))
+       {
+        GAMEMANAGER.instance.moedasGame += 50;
+
+        UIMANAGER.instance.moedasTxt.text = GAMEMANAGER.instance.moedasGame.ToString ();
+        Destroy (col.gameObject);
+
+       } 
+    }
+
+
+
 }

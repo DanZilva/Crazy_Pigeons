@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GAMEMANAGER : MonoBehaviour
 {
-
     public static GAMEMANAGER instance;
     public GameObject[] passaro;
     public int passarosNum;
@@ -20,26 +19,33 @@ public class GAMEMANAGER : MonoBehaviour
 
     public int numPorcosCena;
     private bool tocaWin = false, tocaLose = false;
+    public bool lose;
 
-    public bool estrela1fim, estrela2fim,estrela3fim;
+    public bool estrela1fim, estrela2fim, estrela3fim;
+
+    public int estrelasNum;
+    public bool trava = false;
 
     public int aux;
 
+    public int pontosGame, bestPontoGame;
+    public int moedasGame;
+
     void Awake()
     {
+        ZPlayerPrefs.Initialize("12345678", "crazypigeongame");
+
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad (this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
-            {
-                Destroy (gameObject);
-            } 
+        {
+            Destroy(gameObject);
+        }
 
         SceneManager.sceneLoaded += Carrega;
-
-
     }
 
     void Carrega(Scene cena, LoadSceneMode modo)
@@ -47,31 +53,26 @@ public class GAMEMANAGER : MonoBehaviour
         pos = GameObject.FindWithTag("pos").GetComponent<Transform>();
         objE = GameObject.FindWithTag("PE").GetComponent<Transform>();
         objD = GameObject.FindWithTag("PD").GetComponent<Transform>();
-        StartGame();
 
-        //Passaro Pos
-        
         passarosNum = GameObject.FindGameObjectsWithTag("Player").Length;
         passaro = new GameObject[passarosNum];
 
-        for (int x = 0; x < GameObject.FindGameObjectsWithTag("Player").Length; x++)
+        for (int x = 0; x < passarosNum; x++)
         {
             passaro[x] = GameObject.Find("Bird" + x);
         }
 
-        //
-
-        numPorcosCena = GameObject.FindGameObjectsWithTag ("porco").Length;
+        numPorcosCena = GameObject.FindGameObjectsWithTag("porco").Length;
         aux = passarosNum;
+
+        StartGame();
     }
 
     void NascPassaro()
     {
-
         if (passarosEmCena == 0 && passarosNum > 0)
         {
-            
-            for(int x = 0; x < passaro.Length; x++)
+            for (int x = 0; x < passaro.Length; x++)
             {
                 if (passaro[x] != null)
                 {
@@ -89,86 +90,144 @@ public class GAMEMANAGER : MonoBehaviour
     void GameOver()
     {
         jogoComecou = false;
+        UIMANAGER.instance.painelGameOver.Play("MenuLoseAnimado");
+        if (!UIMANAGER.instance.loseSom.isPlaying && tocaLose == false)
+        {
+            UIMANAGER.instance.loseSom.Play();
+            tocaLose = true;
+        }
     }
 
     void WinGame()
     {
-        jogoComecou = false;
-        UIMANAGER.instance.painelWin.Play ("MenuWinAnimado");
+        SCOREMANAGER.instance.SalvarDados(moedasGame);
+
+        if (jogoComecou != false)
+        {
+            jogoComecou = false;
+            UIMANAGER.instance.painelWin.Play("MenuWinAnimado");
+
+            if (!UIMANAGER.instance.winSom.isPlaying && tocaWin == false)
+            {
+                UIMANAGER.instance.winSom.Play();
+                tocaWin = true;
+            }
+
+            POINTMANAGER.instance.MelhorPontuacaoSave(ONDEESTOU.instance.faseN, pontosGame);
+        }
 
         if (!UIMANAGER.instance.winSom.isPlaying && tocaWin == false)
         {
-            UIMANAGER.instance.winSom.Play ();
+            UIMANAGER.instance.winSom.Play();
             tocaWin = true;
         }
 
-        if (tocaWin && !UIMANAGER.instance.winSom.isPlaying)
+        if (tocaWin && !UIMANAGER.instance.winSom.isPlaying && trava == false)
         {
-           if (passarosNum == aux - 1)
-           {    
-                print("Libera 3 Estrelas!");
-                UIMANAGER.instance.estrela1.Play ("Estrela1_animada");
-                
+            if (passarosNum == aux - 1)
+            {
+                UIMANAGER.instance.estrela1.Play("Estrela1_animada");
 
                 if (estrela1fim)
                 {
-                    UIMANAGER.instance.estrela2.Play ("Estrela2_animada");
+                    UIMANAGER.instance.estrela2.Play("Estrela2_animada");
 
                     if (estrela2fim)
                     {
-                        UIMANAGER.instance.estrela3.Play ("Estrela3_animada");
+                        UIMANAGER.instance.estrela3.Play("Estrela3_animada");
+                        trava = true;
                     }
                 }
-           } 
 
+                estrelasNum = 3;
+            }
             else if (passarosNum == aux - 2)
             {
-                print("Libera 2 Estrelas!");
                 UIMANAGER.instance.estrela1.Play("Estrela1_animada");
 
-                    if (estrela1fim)
-                    {
-                        UIMANAGER.instance.estrela2.Play ("Estrela2_animada");
-                    }              
-            }
+                if (estrela1fim)
+                {
+                    UIMANAGER.instance.estrela2.Play("Estrela2_animada");
+                    trava = true;
+                }
 
-            else if(passarosNum <= aux -3)
+                estrelasNum = 2;
+            }
+            else if (passarosNum <= aux - 3)
             {
-                print("Libera 1 Estrela!");
                 UIMANAGER.instance.estrela1.Play("Estrela1_animada");
+                estrelasNum = 1;
+                trava = true;
             }
-        }
+            else
+            {
+                estrelasNum = 0;
+                trava = true;
+            }
 
+            string chave = "Level" + ONDEESTOU.instance.fase + "estrelas";
+
+            if (!ZPlayerPrefs.HasKey(chave))
+            {
+                ZPlayerPrefs.SetInt(chave, estrelasNum);
+            }
+            else
+            {
+                if (ZPlayerPrefs.GetInt(chave) < estrelasNum)
+                {
+                    ZPlayerPrefs.SetInt(chave, estrelasNum);
+                }
+            }
+
+            ZPlayerPrefs.Save();
+        }
     }
 
     void StartGame()
     {
         jogoComecou = true;
         passarosEmCena = 0;
+        lose = false;
         win = false;
+        trava = false;
+
+        pontosGame = 0;
+        bestPontoGame = POINTMANAGER.instance.MelhorPontuacaoLoad(ONDEESTOU.instance.faseN);
+        UIMANAGER.instance.pontosTxt.text = pontosGame.ToString();
+        UIMANAGER.instance.bestPontoTxt.text = bestPontoGame.ToString();
+
+        moedasGame = SCOREMANAGER.instance.LoadDados();
+        UIMANAGER.instance.moedasTxt.text = SCOREMANAGER.instance.LoadDados ().ToString ();
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        StartGame();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (numPorcosCena <= 0 && passarosNum > 0)
         {
             win = true;
         }
-        if(win)
+        else if (numPorcosCena > 0 && passarosNum <= 0)
         {
-            WinGame ();
+            lose = true;
         }
-        else
+
+        if (win)
         {
-            NascPassaro ();
+            WinGame();
+        }
+        else if (lose)
+        {
+            GameOver();
+        }
+
+        if (jogoComecou)
+        {
+            NascPassaro();
         }
     }
 }

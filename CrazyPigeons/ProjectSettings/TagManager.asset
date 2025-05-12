@@ -15,6 +15,10 @@ TagManager:
   - PE
   - PD
   - porco
+  - pointVal
+  - ptBest
+  - moedatxt
+  - moedasTag
   layers:
   - Default
   - TransparentFX
