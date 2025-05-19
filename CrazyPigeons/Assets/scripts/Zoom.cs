@@ -23,31 +23,42 @@ public class Zoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (GAMEMANAGER.instance.jogoComecou && GAMEMANAGER.instance.pausado == false)
         {
-            if (um_click == false)
-            {
-                um_click  = true;
-                tempoParaDuploCkick = Time.time;
-            }
-
-            else
-            {
             
-             um_click = false;
-             liberaZoom = true;   
 
-            }
 
-        }
-     
-        if (um_click == true)
-        {
-            if ((Time.time - tempoParaDuploCkick) > delay)
+            if (Input.GetMouseButtonDown(0))
             {
+                if (um_click == false)
+                {
+                    um_click  = true;
+                    tempoParaDuploCkick = Time.time;
+                }
+
+                else
+                {
+                
                 um_click = false;
+                liberaZoom = true;   
+
+                }
+
             }
+        
+            if (um_click == true)
+            {
+                if ((Time.time - tempoParaDuploCkick) > delay)
+                {
+                    um_click = false;
+                }
+            }
+
         }
+
+
+
+
     if (Camera.main.orthographicSize > 5 && trava == 1)
     {
         if (liberaZoom)

@@ -9,5 +9,6 @@ public class botaoLevel : MonoBehaviour
     public int desbloqueadoBTN;
 
     //new
-    public Image estrela1,estrela2,estrela3;
+    public Image estrela1, estrela2, estrela3;
+    public string realLevel;
 }

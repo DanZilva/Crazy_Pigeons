@@ -21,15 +21,15 @@ public class POINTMANAGER : MonoBehaviour
 
     public void MelhorPontuacaoSave(string level, int pt)
     {
-        if (!ZPlayerPrefs.HasKey(level + "best"))
+        if (!ZPlayerPrefs.HasKey(level + "best" + ONDEESTOU.instance.faseMestra))
         {
-            ZPlayerPrefs.SetInt(level + "best", pt);
+            ZPlayerPrefs.SetInt(level + "best" + ONDEESTOU.instance.faseMestra, pt);
         }
         else
         {
-            if (pt > ZPlayerPrefs.GetInt(level + "best"))
+            if (pt > ZPlayerPrefs.GetInt(level + "best" + ONDEESTOU.instance.faseMestra))
             {
-                ZPlayerPrefs.SetInt(level + "best", pt);
+                ZPlayerPrefs.SetInt(level + "best" + ONDEESTOU.instance.faseMestra, GAMEMANAGER.instance.pontosGame);
             }
         }
 
@@ -38,9 +38,9 @@ public class POINTMANAGER : MonoBehaviour
 
     public int MelhorPontuacaoLoad(string level)
     {
-        if (ZPlayerPrefs.HasKey(level + "best"))
+        if (ZPlayerPrefs.HasKey(level + "best" + ONDEESTOU.instance.faseMestra))
         {
-            return ZPlayerPrefs.GetInt(level + "best");
+            return ZPlayerPrefs.GetInt(level + "best" + ONDEESTOU.instance.faseMestra);
         }
         else
         {

@@ -10,18 +10,19 @@ public class ONDEESTOU : MonoBehaviour
 
     public int fase = -1;
     public string faseN;
+    public string faseMestra;
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad (this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
 
         else
         {
-            Destroy (gameObject);
+            Destroy(gameObject);
         }
 
 
@@ -31,8 +32,16 @@ public class ONDEESTOU : MonoBehaviour
 
     void VerificaFase(Scene cena, LoadSceneMode modo)
     {
-        fase = SceneManager.GetActiveScene ().buildIndex;
-        faseN = SceneManager.GetActiveScene ().name;
+        fase = SceneManager.GetActiveScene().buildIndex;
+        faseN = SceneManager.GetActiveScene().name;
+    }
+
+    //Mestra
+
+    public void Mestra(string nome)
+    {
+        faseMestra = nome;
+        SceneManager.LoadScene(faseMestra);
     }
 
   

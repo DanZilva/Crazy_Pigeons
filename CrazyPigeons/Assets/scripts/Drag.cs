@@ -217,11 +217,14 @@ public class Drag : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (transform.position == GAMEMANAGER.instance.pos.position)
+        if (GAMEMANAGER.instance.pausado == false)
         {
-            clicked = true;
-            rastro.enabled = false;
-            estouPronto = true;
+            if (transform.position == GAMEMANAGER.instance.pos.position)
+            {
+                clicked = true;
+                rastro.enabled = false;
+                estouPronto = true;
+            }
         }
     }
 

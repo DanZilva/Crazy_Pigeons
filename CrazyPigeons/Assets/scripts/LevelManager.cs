@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
         public bool habilitado;
         public int desbloqueado;
         public bool txtAtivo;
+        public string levelReal;
     }
 
     public GameObject botao;
@@ -27,20 +28,20 @@ public class LevelManager : MonoBehaviour
         {
             GameObject btnNovo = Instantiate(botao) as GameObject;
             botaoLevel btnNew = btnNovo.GetComponent<botaoLevel>(); // Correção aqui
-
             Button buttonComponent = btnNovo.GetComponent<Button>();
             Image buttonImage = btnNovo.GetComponent<Image>();
-
             btnNew.levelTxtBTN.text = level.levelText;
 
+            btnNew.realLevel = level.levelReal;
+
             // Verificar progresso salvo em PlayerPrefs
-           
-           if (ZPlayerPrefs.GetInt("Level"+btnNew.levelTxtBTN.text)==1)
-           {
-            level.desbloqueado = 1;
-            level.habilitado = true;
-            level.txtAtivo = true;
-           }
+
+            if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel+"_"+ONDEESTOU.instance.faseMestra) == 1)
+            {
+                level.desbloqueado = 1;
+                level.habilitado = true;
+                level.txtAtivo = true;
+            }
 
             // Atualizar propriedades do botão
             btnNew.desbloqueadoBTN = level.desbloqueado;
@@ -60,25 +61,25 @@ public class LevelManager : MonoBehaviour
             // Adiciona a função de clique apenas se o nível estiver desbloqueado
             if (level.desbloqueado == 1)
             {
-                buttonComponent.onClick.AddListener(() => ClickLevel("Level" + btnNew.levelTxtBTN.text));
+                buttonComponent.onClick.AddListener(() => ClickLevel("Level" +level.levelReal + "_" + ONDEESTOU.instance.faseMestra));
 
-               if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 1)
+               if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 1)
                {
                 btnNew.estrela1.enabled = true;
                }
-                else if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 2)
+                else if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 2)
                 {
                     btnNew.estrela1.enabled = true;
                     btnNew.estrela2.enabled = true;
 
                 }
-                else if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 3)
+                else if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 3)
                 {
                     btnNew.estrela1.enabled = true;
                     btnNew.estrela2.enabled = true; 
                     btnNew.estrela3.enabled = true;
                 }
-                else if (ZPlayerPrefs.GetInt("Level" + btnNew.levelTxtBTN.text + "estrelas") == 0)
+                else if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 0)
                 {
                     btnNew.estrela1.enabled = false;
                     btnNew.estrela2.enabled = false; 

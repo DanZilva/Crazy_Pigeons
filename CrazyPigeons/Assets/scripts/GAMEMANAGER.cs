@@ -31,6 +31,8 @@ public class GAMEMANAGER : MonoBehaviour
     public int pontosGame, bestPontoGame;
     public int moedasGame;
 
+    public bool pausado = false;
+
     void Awake()
     {
         ZPlayerPrefs.Initialize("12345678", "crazypigeongame");
@@ -102,6 +104,10 @@ public class GAMEMANAGER : MonoBehaviour
     {
         SCOREMANAGER.instance.SalvarDados(moedasGame);
 
+
+        int tempOnde = ONDEESTOU.instance.fase + 1;
+        ZPlayerPrefs.SetInt("Level" + tempOnde + "_" + ONDEESTOU.instance.faseMestra, 1);
+
         if (jogoComecou != false)
         {
             jogoComecou = false;
@@ -113,7 +119,11 @@ public class GAMEMANAGER : MonoBehaviour
                 tocaWin = true;
             }
 
+            //Pontos
+
             POINTMANAGER.instance.MelhorPontuacaoSave(ONDEESTOU.instance.faseN, pontosGame);
+
+            //
         }
 
         if (!UIMANAGER.instance.winSom.isPlaying && tocaWin == false)
@@ -136,6 +146,12 @@ public class GAMEMANAGER : MonoBehaviour
                     {
                         UIMANAGER.instance.estrela3.Play("Estrela3_animada");
                         trava = true;
+
+                        UIMANAGER.instance.winBtnMenu.interactable = true;
+                        UIMANAGER.instance.winBtnNovamente.interactable = true;
+                        UIMANAGER.instance.winBtnProximo.interactable = true;
+
+
                     }
                 }
 
@@ -149,6 +165,13 @@ public class GAMEMANAGER : MonoBehaviour
                 {
                     UIMANAGER.instance.estrela2.Play("Estrela2_animada");
                     trava = true;
+
+                    UIMANAGER.instance.winBtnMenu.interactable = true;
+                    UIMANAGER.instance.winBtnNovamente.interactable = true;
+                    UIMANAGER.instance.winBtnProximo.interactable = true;
+
+
+
                 }
 
                 estrelasNum = 2;
@@ -158,6 +181,10 @@ public class GAMEMANAGER : MonoBehaviour
                 UIMANAGER.instance.estrela1.Play("Estrela1_animada");
                 estrelasNum = 1;
                 trava = true;
+
+                UIMANAGER.instance.winBtnMenu.interactable = true;
+                UIMANAGER.instance.winBtnNovamente.interactable = true;
+                UIMANAGER.instance.winBtnProximo.interactable = true;
             }
             else
             {
@@ -165,7 +192,7 @@ public class GAMEMANAGER : MonoBehaviour
                 trava = true;
             }
 
-            string chave = "Level" + ONDEESTOU.instance.fase + "estrelas";
+            string chave = ONDEESTOU.instance.faseN + "estrelas";
 
             if (!ZPlayerPrefs.HasKey(chave))
             {
@@ -190,19 +217,27 @@ public class GAMEMANAGER : MonoBehaviour
         lose = false;
         win = false;
         trava = false;
-
+        passaroLancado = false;
+        tocaLose = false;
+        tocaWin = false;
         pontosGame = 0;
         bestPontoGame = POINTMANAGER.instance.MelhorPontuacaoLoad(ONDEESTOU.instance.faseN);
         UIMANAGER.instance.pontosTxt.text = pontosGame.ToString();
         UIMANAGER.instance.bestPontoTxt.text = bestPontoGame.ToString();
 
         moedasGame = SCOREMANAGER.instance.LoadDados();
-        UIMANAGER.instance.moedasTxt.text = SCOREMANAGER.instance.LoadDados ().ToString ();
+        UIMANAGER.instance.moedasTxt.text = SCOREMANAGER.instance.LoadDados().ToString();
+        
+        UIMANAGER.instance.winBtnMenu.interactable = false;
+        UIMANAGER.instance.winBtnNovamente.interactable = false;
+        UIMANAGER.instance.winBtnProximo.interactable = false;
     }
 
     void Start()
     {
         StartGame();
+
+        
     }
 
     void Update()
