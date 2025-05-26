@@ -19,6 +19,11 @@ TagManager:
   - ptBest
   - moedatxt
   - moedasTag
+  - fundoPreto
+  - textstar
+  - textstar2
+  - textPontos
+  - textPontos2
   layers:
   - Default
   - TransparentFX

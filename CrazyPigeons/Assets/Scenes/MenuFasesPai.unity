@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 276150681}
   m_Layer: 5
   m_Name: Text (Legacy) (1)
-  m_TagString: Untagged
+  m_TagString: textPontos2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 284922453}
   m_Layer: 5
   m_Name: Text (Legacy) (1)
-  m_TagString: Untagged
+  m_TagString: textstar2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 323677957}
   m_Layer: 5
   m_Name: Text (Legacy) (1)
-  m_TagString: Untagged
+  m_TagString: textstar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1639,7 +1639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19036962, y: 0.78800005}
   m_AnchorMax: {x: 0.95800006, y: 0.93700004}
-  m_AnchoredPosition: {x: -643.9997, y: -127.42038}
+  m_AnchoredPosition: {x: -643.99945, y: -127.42038}
   m_SizeDelta: {x: -1485.4808, y: -35.158142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809199397
@@ -2317,7 +2317,7 @@ GameObject:
   - component: {fileID: 1242296697}
   m_Layer: 5
   m_Name: Text (Legacy) (1)
-  m_TagString: Untagged
+  m_TagString: textPontos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2508,7 +2508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.012, y: 0.07313576}
   m_AnchorMax: {x: 0.27957842, y: 0.82900006}
-  m_AnchoredPosition: {x: -1.4000092, y: 0.30000305}
+  m_AnchoredPosition: {x: -1.4000244, y: 0.30000305}
   m_SizeDelta: {x: 0.51000214, y: 3.5100021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1386091960
@@ -2661,7 +2661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19036962, y: 0.78800005}
   m_AnchorMax: {x: 0.95800006, y: 0.93700004}
-  m_AnchoredPosition: {x: -546.99994, y: -180.42035}
+  m_AnchoredPosition: {x: -546.9997, y: -180.42035}
   m_SizeDelta: {x: -1485.4808, y: -35.158142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1643208613
@@ -2721,6 +2721,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643208611}
   m_CullTransparentMesh: 1
+--- !u!1 &1763953328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763953329}
+  - component: {fileID: 1763953330}
+  m_Layer: 0
+  m_Name: MOSTRA_ESTRELAS_PONTOS
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1763953329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763953328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.07, y: 0.20374942, z: 1.2433428}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763953330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763953328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a09eedef69ad46409337ab20c1d2b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1863262001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,7 +2895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.896, y: 0.8585556}
   m_AnchorMax: {x: 0.9874062, y: 1}
-  m_AnchoredPosition: {x: -118.609985, y: -14.699982}
+  m_AnchoredPosition: {x: -118.609985, y: -14.699951}
   m_SizeDelta: {x: 205.02, y: 7.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1998090448
@@ -3448,3 +3492,4 @@ SceneRoots:
   - {fileID: 405656053}
   - {fileID: 724527059}
   - {fileID: 2631378}
+  - {fileID: 1763953329}

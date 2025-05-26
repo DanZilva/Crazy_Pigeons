@@ -8,6 +8,8 @@ using Unity.VisualScripting;
 
 public class LevelManager : MonoBehaviour
 {
+
+    private int levelsMestre1 = 0, levelsMestre2 = 2;
     [System.Serializable]
     public class Level
     {
@@ -61,12 +63,12 @@ public class LevelManager : MonoBehaviour
             // Adiciona a função de clique apenas se o nível estiver desbloqueado
             if (level.desbloqueado == 1)
             {
-                buttonComponent.onClick.AddListener(() => ClickLevel("Level" +level.levelReal + "_" + ONDEESTOU.instance.faseMestra));
+                buttonComponent.onClick.AddListener(() => ClickLevel("Level" + level.levelReal + "_" + ONDEESTOU.instance.faseMestra));
 
-               if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 1)
-               {
-                btnNew.estrela1.enabled = true;
-               }
+                if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 1)
+                {
+                    btnNew.estrela1.enabled = true;
+                }
                 else if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 2)
                 {
                     btnNew.estrela1.enabled = true;
@@ -76,14 +78,26 @@ public class LevelManager : MonoBehaviour
                 else if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 3)
                 {
                     btnNew.estrela1.enabled = true;
-                    btnNew.estrela2.enabled = true; 
+                    btnNew.estrela2.enabled = true;
                     btnNew.estrela3.enabled = true;
                 }
                 else if (ZPlayerPrefs.GetInt("Level" + btnNew.realLevel + "_" + ONDEESTOU.instance.faseMestra + "estrelas") == 0)
                 {
                     btnNew.estrela1.enabled = false;
-                    btnNew.estrela2.enabled = false; 
-                    btnNew.estrela3.enabled = false; 
+                    btnNew.estrela2.enabled = false;
+                    btnNew.estrela3.enabled = false;
+                }
+
+                if (ONDEESTOU.instance.faseMestra == "Mestra1")
+                {
+                    levelsMestre1++;
+                    ZPlayerPrefs.SetInt("FasesNumMestra1", levelsMestre1);
+                }
+
+                else if (ONDEESTOU.instance.faseMestra == "Mestra2")
+                {
+                    levelsMestre2++;
+                    ZPlayerPrefs.SetInt("FasesNumMestra2", levelsMestre2);
                 }
 
 
