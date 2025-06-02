@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 272808618002970358}
   - component: {fileID: 1036583002392815524}
   - component: {fileID: 3420484258886296891}
+  - component: {fileID: 5482946122861921003}
   - component: {fileID: 2462219817410202915}
   - component: {fileID: 4467209058131415984}
-  - component: {fileID: -4339159632160547650}
   - component: {fileID: 2989900000203707052}
   - component: {fileID: 4556584260732283225}
   m_Layer: 6
-  m_Name: BirdEnemyFlapSprite 1
+  m_Name: BirdEnemyFlapSprite 2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.17, y: -0.82, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: -0.7157299, y: 0.7157299, z: 0.7157299}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7069099434053763814}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -1916145571
   m_SortingLayer: 1
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 6c611c7b27282a74e815e5635f7895ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6654022faa1eb34f8eff90a9ec4bd84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -154,6 +154,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5482946122861921003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517103058507587020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabd78008a547c348bffaf1ee4479132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pass1: {fileID: 3420484258886296891, guid: 8246eefd314f0c64193e021f33db0c60, type: 3}
+  pass2: {fileID: 3420484258886296891, guid: 8246eefd314f0c64193e021f33db0c60, type: 3}
+  passaroRb: {fileID: 3420484258886296891}
+  passaPrefb: {fileID: 3420484258886296891}
+  trava: 0
 --- !u!114 &2462219817410202915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,21 +215,6 @@ SpringJoint2D:
   m_Distance: 1
   m_DampingRatio: 0
   m_Frequency: 1
---- !u!114 &-4339159632160547650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517103058507587020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fac1bd8bc9f2c61499eb7598e17e8e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passaroRb: {fileID: 0}
-  libera: 0
-  trava: 0
 --- !u!114 &2989900000203707052
 MonoBehaviour:
   m_ObjectHideFlags: 0

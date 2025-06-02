@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mestra2.unity
     guid: 114b8134ce11bf34ab8e03971a796c2e
+  - enabled: 1
+    path: Assets/Scenes/Loja.unity
+    guid: 4be49bb88d5625b479c6ac227044ddcc
   m_configObjects: {}

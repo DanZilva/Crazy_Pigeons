@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 272808618002970358}
   - component: {fileID: 1036583002392815524}
   - component: {fileID: 3420484258886296891}
+  - component: {fileID: -1402177752705372580}
   - component: {fileID: 2989900000203707052}
   m_Layer: 6
   m_Name: clone
-  m_TagString: Player
+  m_TagString: clone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.17, y: -0.82, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: -0.7157299, y: 0.7157299, z: 0.7157299}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7069099434053763814}
@@ -77,9 +78,9 @@ SpriteRenderer:
   m_SortingLayerID: -1916145571
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 86ce912717672b8429c58e6960c12e25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6654022faa1eb34f8eff90a9ec4bd84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.28, y: 1.28}
@@ -120,9 +121,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13884616, y: 0.0072011948}
+  m_Offset: {x: -0.070055425, y: 0.009171963}
   serializedVersion: 2
-  m_Radius: 0.5453298
+  m_Radius: 0.65766364
 --- !u!50 &3420484258886296891
 Rigidbody2D:
   serializedVersion: 4
@@ -150,6 +151,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-1402177752705372580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517103058507587020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b742ea8acaea03a458e174cb1e1ecb5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2989900000203707052
 MonoBehaviour:
   m_ObjectHideFlags: 0

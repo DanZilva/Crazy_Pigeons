@@ -42,6 +42,8 @@ public class Drag : MonoBehaviour
     public AudioSource audioPassaro;
     public GameObject audioMortePassaro;
 
+    private Transform pontoMorte;
+
     void Awake()
     {
         spring = GetComponent<SpringJoint2D>();
@@ -61,6 +63,8 @@ public class Drag : MonoBehaviour
         rastro = GetComponentInChildren<TrailRenderer>();
 
         audioPassaro = GetComponent<AudioSource>();
+
+        pontoMorte = GameObject.Find("MORRE").GetComponent<Transform>();
     }
 
     void Start()
@@ -178,7 +182,7 @@ public class Drag : MonoBehaviour
 
     void MataPassaro()
     {
-        if (passaroRB.velocity.magnitude == 0 && passaroRB.IsSleeping())
+        if (passaroRB.velocity.magnitude == 0 && passaroRB.IsSleeping() || transform.position.x > pontoMorte.position.x)
         {
             StartCoroutine(TempoMorte());
         }
@@ -205,10 +209,10 @@ public class Drag : MonoBehaviour
 
             catapulTotBird = mouseWP - catapult.position;
 
-            if (catapulTotBird.magnitude > 5.5F)
+            if (catapulTotBird.magnitude > 4.2F)
             {
                 rayToMT.direction = catapulTotBird;
-                mouseWP = rayToMT.GetPoint(5.5F);
+                mouseWP = rayToMT.GetPoint(4.2F);
             }
 
             transform.position = mouseWP;

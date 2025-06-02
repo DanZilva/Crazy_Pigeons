@@ -34,7 +34,7 @@ public class ImpactAnimaPorco : MonoBehaviour
                 Destroy (gameObject);
             }
         }
-        else if(col.relativeVelocity.magnitude > 12 && col.gameObject.CompareTag("Player") )
+        else if(col.relativeVelocity.magnitude > 12 && col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("clone"))
         {
             Instantiate (pontos1000 , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
             Instantiate (bomb , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);

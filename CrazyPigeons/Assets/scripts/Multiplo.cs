@@ -39,25 +39,24 @@ public class Multiplo : MonoBehaviour
 
         //Touch
 
-            touch = Input.GetTouch (0);
+         if (Input.touchCount > 0)
+{
+    touch = Input.GetTouch(0);
 
-        if (touch.phase == TouchPhase.Ended && trava < 2 && passaroRb.isKinematic == false)
-        {   
-            trava ++;
-            
+    if (touch.phase == TouchPhase.Ended && trava < 2 && passaroRb.isKinematic == false)
+    {
+        trava++;
 
-            if (trava == 2)
-            {
-
+        if (trava == 2)
+        {
             start = transform.position;
-            pass1 = Instantiate (passaPrefb, new UnityEngine.Vector3(start.x, start.y +0.1f,start.z), Quaternion.identity);
-            pass2 = Instantiate (passaPrefb, new UnityEngine.Vector3(start.x, start.y -0.1f,start.z), Quaternion.identity);
+            pass1 = Instantiate(passaPrefb, new Vector3(start.x, start.y + 0.1f, start.z), Quaternion.identity);
+            pass2 = Instantiate(passaPrefb, new Vector3(start.x, start.y - 0.1f, start.z), Quaternion.identity);
 
             libera = true;
-            }
-            
-            
         }
+    }
+}
 
 
     }

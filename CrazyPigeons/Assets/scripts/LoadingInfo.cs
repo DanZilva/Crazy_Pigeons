@@ -10,15 +10,14 @@ public class LoadingInfo : MonoBehaviour
 
     public Text txtCarregando;
 
-    public void BtnClick()
+    public void BtnClick(string s)
     {
-        StartCoroutine (LoadGameProg());
+        StartCoroutine (LoadGameProg(s));
     }
 
-    IEnumerator LoadGameProg()
+    IEnumerator LoadGameProg(string val)
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync(1);
-
+        AsyncOperation async = SceneManager.LoadSceneAsync(val);
         while (!async.isDone)
         {
             txtCarregando.enabled = true;
