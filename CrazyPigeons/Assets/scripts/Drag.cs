@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class Drag : MonoBehaviour
@@ -51,6 +50,17 @@ public class Drag : MonoBehaviour
         lineBack = (LineRenderer)GameObject.FindWithTag("LB").GetComponent<LineRenderer>();
         CatapultRB = GameObject.FindWithTag("LB").GetComponent<Rigidbody2D>();
         spring.connectedBody = CatapultRB;
+
+        //Ajuste
+        UnityEngine.Vector2 temp = spring.connectedAnchor;
+        temp.x = 0;
+        temp.y = 0;
+        spring.connectedAnchor = temp;
+
+
+
+
+
         drag = GetComponent<Collider2D>();
         leftCatapuiltRay = new Ray(lineFront.transform.position, UnityEngine.Vector3.zero);
         passaroCol = GetComponent<CircleCollider2D>();
@@ -78,7 +88,6 @@ public class Drag : MonoBehaviour
         SpringEffect();
         prevVel = passaroRB.velocity;
 
-#if UNITY_ANDROID
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
@@ -87,7 +96,17 @@ public class Drag : MonoBehaviour
 
             if (hit.collider != null)
             {
-                clicked = true;
+                //ajuste
+
+                if (GAMEMANAGER.instance.pausado == false)
+                {
+                    if (transform.position == GAMEMANAGER.instance.pos.position)
+                    {
+                        clicked = true;
+                        rastro.enabled = false;
+                        estouPronto = true;
+                    }
+                }
             }
 
             if (clicked)
@@ -104,38 +123,41 @@ public class Drag : MonoBehaviour
                     }
 
                     transform.position = tPos;
+                    rastro.enabled = false;
                 }
             }
 
-            if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) && clicked)
+            if (touch.phase == TouchPhase.Ended)
             {
                 passaroRB.isKinematic = false;
                 clicked = false;
-                MataPassaro();
+                rastro.enabled = true;
             }
         }
-#endif
+//#endif
 
-#if UNITY_EDITOR
         if (clicked)
         {
             Dragging();
         }
 
-        if (!clicked && !passaroRB.isKinematic)
+        //#endif
+
+        if (clicked == false && passaroRB.isKinematic == false && passaroRB.IsSleeping())
         {
             MataPassaro();
+            passaroRB.isKinematic = true;
+
         }
-#endif
 
 
     if (passaroRB.isKinematic == false)
-    {
-        UnityEngine.Vector3 posCam = Camera.main.transform.position;
-        posCam.x = transform.position.x;
-        posCam.x = Mathf.Clamp (posCam.x, GAMEMANAGER.instance.objE.position.x, GAMEMANAGER.instance.objD.position.x);
-        Camera.main.transform.position = posCam;
-    }
+        {
+            UnityEngine.Vector3 posCam = Camera.main.transform.position;
+            posCam.x = transform.position.x;
+            posCam.x = Mathf.Clamp(posCam.x, GAMEMANAGER.instance.objE.position.x, GAMEMANAGER.instance.objD.position.x);
+            Camera.main.transform.position = posCam;
+        }
 
     }
 
@@ -209,10 +231,10 @@ public class Drag : MonoBehaviour
 
             catapulTotBird = mouseWP - catapult.position;
 
-            if (catapulTotBird.magnitude > 4.2F)
+            if (catapulTotBird.magnitude > 4.9F)
             {
                 rayToMT.direction = catapulTotBird;
-                mouseWP = rayToMT.GetPoint(4.2F);
+                mouseWP = rayToMT.GetPoint(4.9F);
             }
 
             transform.position = mouseWP;

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2462219817410202915}
   - component: {fileID: 4467209058131415984}
   - component: {fileID: 2989900000203707052}
-  - component: {fileID: 8065537075854074263}
   - component: {fileID: 4556584260732283225}
   m_Layer: 6
   m_Name: BirdEnemyFlapSprite 3
@@ -210,22 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a911621f94a08324e8e73e46a8fc07d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8065537075854074263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517103058507587020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94b29fd67d80c040a10f06b0a4e369e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passaroRb: {fileID: 0}
-  libera: 0
-  trava: 0
-  bomba: {fileID: 2645031577828016551, guid: 210ae7754da0d9b448771d9cb1b74c7e, type: 3}
 --- !u!82 &4556584260732283225
 AudioSource:
   m_ObjectHideFlags: 0

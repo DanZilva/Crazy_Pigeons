@@ -92,6 +92,7 @@ public class UIMANAGER : MonoBehaviour
             pauseBtnPlay?.onClick.AddListener(PausarInvers);
             pauseBtnNovamente?.onClick.AddListener(Again);
             pauseBtnMenu?.onClick.AddListener(GoMenu);
+            pauseBtnLoja?.onClick.AddListener(GoLoja);
 
             // Lose
             loseBtnMenu?.onClick.AddListener(GoMenu);
@@ -140,11 +141,21 @@ public class UIMANAGER : MonoBehaviour
         {
             SceneManager.LoadScene("Mestra2");
         }
+
+        Time.timeScale = 1;
+        GAMEMANAGER.instance.pausado = false;
+
+        AUDIOMANAGER.instance.GetSom(1);
+
+
+
     }
 
     // Loja (reserva)
     void GoLoja()
     {
+        AUDIOMANAGER.instance.GetSom(1);
+        SceneManager.LoadScene("Loja");
         Time.timeScale = 1;
         GAMEMANAGER.instance.pausado = false;
     }
@@ -152,9 +163,21 @@ public class UIMANAGER : MonoBehaviour
     // Avançar fase
     void ProximaFase()
     {
-        SceneManager.LoadScene(ONDEESTOU.instance.fase + 1);
+        if (ONDEESTOU.instance.faseN == "Level2_Mestra1" || ONDEESTOU.instance.faseN == "Level4_Mestra2")
+        {
+            SceneManager.LoadScene("MenuFasesPai");
+            AUDIOMANAGER.instance.GetSom(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(ONDEESTOU.instance.fase + 1);
+        }
+
     }
 
-    void Start() { }
+    void Start()
+    { 
+        
+    }
     void Update() { }
 }

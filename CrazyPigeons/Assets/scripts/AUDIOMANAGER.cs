@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AUDIOMANAGER : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class AUDIOMANAGER : MonoBehaviour
 
     public AudioClip [] clip;
     public AudioSource audioS;
+
+    public int pause = -1;
 
     void Awake()
     {
@@ -34,17 +37,49 @@ public class AUDIOMANAGER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!audioS.isPlaying)
+        if (pause == 1)
         {
-            audioS.clip = GetRandom ();
-            audioS.Play ();
+            audioS.Pause();
+        }
+        else if (!audioS.isPlaying)
+        {
+            audioS.Play();
         }
     }
 
-    AudioClip GetRandom()
-    {
-        return clip[Random.Range(0,clip.Length)];
-    }
 
+    public void GetSom(int clips)
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene.StartsWith("Level") && currentScene.Contains("Mestra"))
+        {
+            audioS.Stop();
+            audioS.clip = null;
+            return;
+        }
+
+
+
+        if (clips == 0)
+            {
+                audioS.clip = clip[0];
+                audioS.loop = true;
+                audioS.Play();
+            }
+            else if (clips == 1)
+            {
+                audioS.clip = clip[1];
+                audioS.loop = true;
+                audioS.Play();
+            }
+
+
+
+
+
+
+
+    }
 
 }

@@ -15,7 +15,7 @@ public class MorteTudo : MonoBehaviour
     IEnumerator morte()
     {
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
 }

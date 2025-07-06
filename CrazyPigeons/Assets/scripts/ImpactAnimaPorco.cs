@@ -19,27 +19,40 @@ public class ImpactAnimaPorco : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.relativeVelocity.magnitude > 4 && col.relativeVelocity.magnitude < 10)
+        if (GAMEMANAGER.instance.jogoComecou == true)
         {
-            if (limite < clips.Length - 1)
+
+
+            if (col.relativeVelocity.magnitude > 4 && col.relativeVelocity.magnitude < 10)
             {
-                limite ++;
-                animacoes.Play(clips[limite]);
+                if (limite < clips.Length - 1)
+                {
+                    limite++;
+                    animacoes.Play(clips[limite]);
+                }
+                else if (limite == clips.Length - 1)
+                {
+                    Instantiate(pontos1000, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(bomb, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    if (GAMEMANAGER.instance.numPorcosCena < 0)
+                    {
+                        GAMEMANAGER.instance.numPorcosCena = 0;
+                    }
+                    GAMEMANAGER.instance.numPorcosCena -= 1;
+                    Destroy(gameObject);
+                }
             }
-            else if (limite == clips.Length -1)
+            else if (col.relativeVelocity.magnitude > 12 && col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("clone"))
             {
-                Instantiate (pontos1000 , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-                Instantiate (bomb , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
+                Instantiate(pontos1000, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                Instantiate(bomb, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                 if (GAMEMANAGER.instance.numPorcosCena < 0)
+                    {
+                        GAMEMANAGER.instance.numPorcosCena = 0;
+                    }
                 GAMEMANAGER.instance.numPorcosCena -= 1;
-                Destroy (gameObject);
+                Destroy(gameObject);
             }
         }
-        else if(col.relativeVelocity.magnitude > 12 && col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("clone"))
-        {
-            Instantiate (pontos1000 , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-            Instantiate (bomb , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-            GAMEMANAGER.instance.numPorcosCena -= 1;
-            Destroy (gameObject);
-        }
-    }
+      }
 }

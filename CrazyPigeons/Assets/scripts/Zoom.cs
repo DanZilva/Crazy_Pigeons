@@ -59,12 +59,12 @@ public class Zoom : MonoBehaviour
 
 
 
-    if (Camera.main.orthographicSize > 5 && trava == 1)
+    if (Camera.main.orthographicSize > CameraSizeHandler.camSize/2 && trava == 1)
     {
         if (liberaZoom)
         {
             Camera.main.orthographicSize -= orthoZoomSpeed;
-            if (Camera.main.orthographicSize == 5)
+            if (Camera.main.orthographicSize <= CameraSizeHandler.camSize/2)
             {
                 liberaZoom = false;
                 trava =2;
@@ -72,12 +72,12 @@ public class Zoom : MonoBehaviour
         }
     }
 
-    else if (Camera.main.orthographicSize < 10 && trava == 2)
+    else if (Camera.main.orthographicSize < CameraSizeHandler.camSize && trava == 2)
     {
        if (liberaZoom)
         {
             Camera.main.orthographicSize += orthoZoomSpeed;
-            if (Camera.main.orthographicSize == 10)
+            if (Camera.main.orthographicSize == CameraSizeHandler.camSize)
             {
                 liberaZoom = false;
                 trava =1;

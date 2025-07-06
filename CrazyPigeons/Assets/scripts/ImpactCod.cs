@@ -30,35 +30,39 @@ public class ImpactCod : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.relativeVelocity.magnitude > 4 && col.relativeVelocity.magnitude < 10)
+        if (GAMEMANAGER.instance.jogoComecou == true)
         {
-            if (limite < sprites.Length - 1)
+
+            if (col.relativeVelocity.magnitude > 4 && col.relativeVelocity.magnitude < 10)
             {
-                limite ++;
-                spriteR.sprite = sprites [limite];
-                audioObj.clip = clips [0];
-                audioObj.Play();
+                if (limite < sprites.Length - 1)
+                {
+                    limite++;
+                    spriteR.sprite = sprites[limite];
+                    audioObj.clip = clips[0];
+                    audioObj.Play();
+                }
+                else if (limite == sprites.Length - 1)
+                {
+                    Instantiate(pontos1000, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(bomb, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    audioObj.clip = clips[1];
+                    audioObj.Play();
+                    Destroy(gameObject);
+                    GAMEMANAGER.instance.pontosGame += 1000;
+                    UIMANAGER.instance.pontosTxt.text = GAMEMANAGER.instance.pontosGame.ToString();
+                }
             }
-            else if (limite == sprites.Length -1)
+            else if (col.relativeVelocity.magnitude > 12 && col.gameObject.CompareTag("Player"))
             {
-                Instantiate (pontos1000 , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-                Instantiate (bomb , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-                audioObj.clip = clips [1];
+                Instantiate(pontos1000, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                Instantiate(bomb, new UnityEngine.Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                audioObj.clip = clips[1];
                 audioObj.Play();
-                Destroy (gameObject);
+                Destroy(gameObject, 3);
                 GAMEMANAGER.instance.pontosGame += 1000;
-                UIMANAGER.instance.pontosTxt.text = GAMEMANAGER.instance.pontosGame.ToString ();
+                UIMANAGER.instance.pontosTxt.text = GAMEMANAGER.instance.pontosGame.ToString();
             }
         }
-        else if(col.relativeVelocity.magnitude > 12 && col.gameObject.CompareTag("Player") )
-        {
-            Instantiate (pontos1000 , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-            Instantiate (bomb , new UnityEngine.Vector2 (transform.position.x, transform.position.y), Quaternion.identity);
-            audioObj.clip = clips [1];
-            audioObj.Play();
-            Destroy (gameObject,3);
-            GAMEMANAGER.instance.pontosGame += 1000;
-            UIMANAGER.instance.pontosTxt.text = GAMEMANAGER.instance.pontosGame.ToString ();
-        }
-    }
+       }
 }

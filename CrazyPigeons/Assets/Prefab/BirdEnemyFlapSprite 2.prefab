@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabd78008a547c348bffaf1ee4479132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pass1: {fileID: 3420484258886296891, guid: 8246eefd314f0c64193e021f33db0c60, type: 3}
-  pass2: {fileID: 3420484258886296891, guid: 8246eefd314f0c64193e021f33db0c60, type: 3}
-  passaroRb: {fileID: 3420484258886296891}
-  passaPrefb: {fileID: 3420484258886296891}
+  pass1: {fileID: 0}
+  pass2: {fileID: 0}
+  passaroRb: {fileID: 0}
+  passaPrefb: {fileID: 3420484258886296891, guid: 8246eefd314f0c64193e021f33db0c60, type: 3}
   trava: 0
 --- !u!114 &2462219817410202915
 MonoBehaviour:
