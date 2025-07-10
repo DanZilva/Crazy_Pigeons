@@ -9,5 +9,5 @@ Contém:
 
 *Sistema de simulação de loja;
 
-*sistema de ranking por fase;
+*Sistema de ranking por fase;
 
