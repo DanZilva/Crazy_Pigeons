@@ -1,13 +1,23 @@
-# Crazy_Pigeons
-Um clone de Angry Birds para dispositivos Android e PC.
+PT-BR 🇧🇷
+Crazy_Pigeons é um clone do famoso jogo Angry Birds, desenvolvido para dispositivos Android e PC.
 
-Contém:
+🔹 Contém:
+4 fases jogáveis;
 
-*4 fases;
+3 tipos diferentes de pássaros;
 
-*3 passaros diferentes;
+Sistema de simulação de loja;
 
-*Sistema de simulação de loja;
+Sistema de ranking por fase.
 
-*Sistema de ranking por fase;
+ENG 🇺🇸
+Crazy_Pigeons is a clone of the popular Angry Birds game, developed for both Android devices and PC.
 
+🔹 Features:
+4 playable levels;
+
+3 different types of birds;
+
+Shop simulation system;
+
+Per-level ranking system.
