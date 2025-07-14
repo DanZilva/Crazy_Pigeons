@@ -1,3 +1,5 @@
+🐦 Crazy_Pigeons
+
 PT-BR 🇧🇷
 Crazy_Pigeons é um clone do famoso jogo Angry Birds, desenvolvido para dispositivos Android e PC.
 
